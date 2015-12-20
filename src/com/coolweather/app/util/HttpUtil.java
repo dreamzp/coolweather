@@ -3,25 +3,28 @@ package com.coolweather.app.util;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
-import javax.net.ssl.HttpsURLConnection;
+import android.util.Log;
 
 public class HttpUtil {
-	public static void sendHttpRequest(final String address, final HttpCallbackListener listener ) {
+	public static void sendHttpRequest(final String address, final HttpCallbackListener listener) {
 		new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
-				HttpsURLConnection connection = null;
+				Log.d("xys", "xys::" );
+				HttpURLConnection connection = null;
 				try {
 					URL url = new URL(address);
-					connection = (HttpsURLConnection) url.openConnection();
+					connection = (HttpURLConnection)url.openConnection();
 					connection.setRequestMethod("GET");
 					connection.setReadTimeout(8000);
 					connection.setConnectTimeout(8000);
 					InputStream in = connection.getInputStream();
 					BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+					Log.d("xys", "xys:" + reader);
 					StringBuilder response = new StringBuilder();
 					String line;
 					while((line = reader.readLine()) != null){
@@ -35,6 +38,7 @@ public class HttpUtil {
 					// TODO: handle exception
 					if (listener != null) {
 						listener.onError(e);
+						Log.e("xys", ""+e);
 					}
 				}
 				finally{

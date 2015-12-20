@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -93,18 +94,36 @@ public class ChooseAreaActivity extends Activity {
 			}
 			adapter.notifyDataSetChanged();
 			listView.setSelection(0);
-			titleText.setText("ÖÐ¹ú");
+			titleText.setText("ä¸­å›½");
 			currentLevel = LEVEL_PROVINCE;
 		}else {
 			queryFromServer(null, "province");
 		}
 	}
+	
+	private void queryCities() {
+		// TODO Auto-generated method stub
+		cityList = coolWeatherDB.loadCities(selectedProvince.getId());
+		if (cityList.size()>0) {
+			dataList.clear();
+			for(City city : cityList){
+				dataList.add(city.getCityName());
+			}
+			adapter.notifyDataSetChanged();
+			listView.setSelection(0);
+			titleText.setText(selectedProvince.getProvinceName());
+			currentLevel = LEVEL_CITY;
+		}else {
+			queryFromServer(selectedProvince.getProvinceCode(), "city");
+		}
+	}
+	
 	private void queryCounties() {
 		// TODO Auto-generated method stub
 		countyList = coolWeatherDB.loadCounties(selectedCity.getId());
 		if (countyList.size()>0) {
 			dataList.clear();
-			for(County county:countyList){
+			for(County county : countyList){
 				dataList.add(county.getCountyName());
 			}
 			adapter.notifyDataSetChanged();
@@ -116,37 +135,26 @@ public class ChooseAreaActivity extends Activity {
 		}
 	}
 
-	private void queryCities() {
-		// TODO Auto-generated method stub
-		cityList = coolWeatherDB.loadCities(selectedProvince.getId());
-		if (cityList.size()>0) {
-			dataList.clear();
-			for(City city:cityList){
-				dataList.add(city.getCityName());
-			}
-			adapter.notifyDataSetChanged();
-			listView.setSelection(0);
-			titleText.setText(selectedProvince.getProvinceName());
-			currentLevel = LEVEL_CITY;
-		}else {
-			queryFromServer(selectedProvince.getProvinceCode(), "city");
-		}
-	}
 	private void queryFromServer(final String code, final String type) {
+		Log.d("xys","xys...<<<");
+		
 		// TODO Auto-generated method stub
-	String address;
+		String address;
 		if (!TextUtils.isEmpty(code)) {
 			address = "http://www.weather.com.cn/data/list3/city"+code+".xml";
 		}else {
 			address = "http://www.weather.com.cn/data/list3/city.xml";
 			
 		}
+		Log.d("xys","xys<<<"+address);
 		showProgressDialog();
+		Log.d("xys","xys<<<æ‰“å¼€å¯¹è¯æ¡†");
 		HttpUtil.sendHttpRequest(address, new HttpCallbackListener() {
 			
 			@Override
 			public void onFinish(String response) {
 				// TODO Auto-generated method stub
+				Log.d("xys","xys<<<onFinish");
 				boolean result = false;
 				if ("province".equals(type)) {
 					
@@ -188,8 +196,9 @@ public class ChooseAreaActivity extends Activity {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						closeProgressDialog();
-						Toast.makeText(ChooseAreaActivity.this, "¼ÓÔØÊ§°Ü", Toast.LENGTH_LONG).show();
+//						closeProgressDialog();
+						Log.d("xys","xys<<<onError");
+						Toast.makeText(ChooseAreaActivity.this, "åŠ è½½å¤±è´¥", Toast.LENGTH_LONG).show();
 					}
 				});
 				
@@ -200,7 +209,8 @@ public class ChooseAreaActivity extends Activity {
 		// TODO Auto-generated method stub
 		if (progressDialog ==null) {
 			progressDialog = new ProgressDialog(this);
-			progressDialog.setMessage("ÕýÔÚ¼ÓÔØ...");
+			
+			progressDialog.setMessage("æ­£åœ¨åŠ è½½...");
 			progressDialog.setCanceledOnTouchOutside(false);
 		}
 		progressDialog.show();

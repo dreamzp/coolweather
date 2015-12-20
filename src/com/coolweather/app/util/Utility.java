@@ -15,7 +15,7 @@ public class Utility {
 			if(!TextUtils.isEmpty(response)){
 				String[] allProvinces = response.split(",");
 				if (allProvinces != null && allProvinces.length>0) {
-					for(String p:allProvinces){
+					for(String p : allProvinces){
 						String[] array  = p.split("\\|");
 						Province province = new Province();
 						province.setProvinceCode(array[0]);
@@ -34,12 +34,12 @@ public class Utility {
 	 */
 		
 		
-		public synchronized static boolean handleCitiesResponse(CoolWeatherDB coolWeatherDB,
+		public static boolean handleCitiesResponse(CoolWeatherDB coolWeatherDB,
 				String response, int provinceId){
 			if(!TextUtils.isEmpty(response)){
 				String[] allCities = response.split(",");
 				if (allCities != null&& allCities.length>0) {
-					for(String c:allCities){
+					for(String c : allCities){
 						String[] array  = c.split("\\|");
 						City city = new City();
 						city.setCityCode(array[0]);
@@ -58,12 +58,12 @@ public class Utility {
 		/**
 		 * 解析县级数据
 		 */
-		public synchronized static boolean handleCountiesResponse(CoolWeatherDB coolWeatherDB,
+		public  static boolean handleCountiesResponse(CoolWeatherDB coolWeatherDB,
 				String response, int cityId){
 			if(!TextUtils.isEmpty(response)){
 				String[] allCounties = response.split(",");
 				if (allCounties != null && allCounties.length>0) {
-					for(String c:allCounties){
+					for(String c : allCounties){
 						String[] array  = c.split("\\|");
 						County county  = new County();
 						county.setCountyCode(array[0]);

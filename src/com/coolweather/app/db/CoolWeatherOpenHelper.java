@@ -21,7 +21,7 @@ public class CoolWeatherOpenHelper extends SQLiteOpenHelper {
 					"city_code text, "+"province_id integer)";
 	/**
 	 *
-	 *County建表---国家
+	 *County建表---县
 	 *
 	 */
 	public static final String CREATE_COUNTY = "create table County ("+
