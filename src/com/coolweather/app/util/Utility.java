@@ -36,7 +36,7 @@ public class Utility {
 			return false;
 		}
 	/**
-	 * ½âÎöÊÐ¼¶Êý¾Ý
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 		
 		
@@ -44,15 +44,13 @@ public class Utility {
 				String response, int provinceId){
 			if(!TextUtils.isEmpty(response)){
 				String[] allCities = response.split(",");
-				if (allCities != null&& allCities.length>0) {
+				if (allCities != null && allCities.length>0) {
 					for(String c : allCities){
 						String[] array  = c.split("\\|");
 						City city = new City();
 						city.setCityCode(array[0]);
 						city.setCityName(array[1]);
 						city.setProvinceId(provinceId);
-						
-						
 						coolWeatherDB.saveCity(city);
 					}
 					return true;
@@ -62,7 +60,7 @@ public class Utility {
 		}
 		
 		/**
-		 * ½âÎöÏØ¼¶Êý¾Ý
+		 * ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		 */
 		public  static boolean handleCountiesResponse(CoolWeatherDB coolWeatherDB,
 				String response, int cityId){
@@ -98,7 +96,6 @@ public class Utility {
 						,publishTime);
 			} catch (Exception e) {
 				e.printStackTrace();
-				Log.e("xys", "½âÎö´íÎó£¡");
 			}
 		}
 		public static void saveWeatherInfo(Context context, String cityName,
@@ -115,6 +112,6 @@ public class Utility {
 			editor.putString("publish_time",publishTime);
 			editor.putString("current_date", sdf.format(new Date()));
 			editor.commit();
-			Log.d("xys", "Êý¾Ý³É¹¦»ñÈ¡²¢±£´æ");
+			Log.d("xys",sdf.format(new Date() ));
 		}
 }

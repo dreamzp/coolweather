@@ -7,15 +7,33 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp" 
-        android:background="#484E61">
+        android:background="#484E61"
+        android:id="@+id/iii">
+<Button
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:id="@+id/switch_city"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="10dp"
+    android:background="@drawable/re"
+    android:onClick="doClick" />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/city_name"
+    android:layout_centerInParent="true"
+    android:textColor="#fff"
+    android:textSize="24sp"/>
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/refresh_weather"
+            android:layout_alignParentRight="true"
+            android:onClick="doClick"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
 
-        <TextView
-            android:id="@+id/city_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="#fff"
-            android:textSize="24sp" />
+            android:background="@drawable/refre"/>
 
     </RelativeLayout>
 
@@ -23,7 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#27A5F9" >
+        android:background="#27A5F9"
+        android:id="@+id/ttt">
 
         <TextView
             android:id="@+id/publish_text"
@@ -98,14 +117,14 @@
     	 </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tx1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="26dp"
-        android:layout_toRightOf="@+id/weather_info_layout"
-         />
-
- </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:layout_above="@+id/weather_info_layout"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="62dp" />
+    </RelativeLayout>
 </LinearLayout>
