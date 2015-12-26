@@ -34,7 +34,7 @@ public class WeatherActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.weather_layout);
 		cityNameText = (TextView) findViewById(R.id.city_name);
-		publishText = (TextView) findViewById(R.id.publish_text);
+		publishText = (TextView) findViewById(R.id.tx1);
 		weatherDespText = (TextView) findViewById(R.id.weather_desp);
 		temp1Text = (TextView) findViewById(R.id.temp1);
 		temp2Text = (TextView) findViewById(R.id.temp2);
@@ -72,7 +72,7 @@ public class WeatherActivity extends Activity {
 		private void queryWeatherCode(String countyCode) {
 			// TODO Auto-generated method stub
 			String address = "http://www.weather.com.cn/data/list3/city"+countyCode
-					+"xml";
+					+".xml";
 			queryFromServer(address, "countyCode");
 		}
 		private void queryFromServer(final String address, final String type) {
